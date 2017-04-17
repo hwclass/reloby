@@ -1,0 +1,24 @@
+{
+  "name": "reloby",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hwclass/reloby.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hwclass/reloby/issues"
+  },
+  "homepage": "https://github.com/hwclass/reloby#readme",
+  "devDependencies": {
+    "aws-sdk": "^2.41.0",
+    "uuid": "^3.0.1"
+  }
+}
