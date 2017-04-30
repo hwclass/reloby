@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
 import './Home.css';
 
 class Home extends Component {
@@ -15,8 +14,4 @@ class Home extends Component {
   }
 }
 
-export default () => (
-  <Switch>
-    <Route path="/" exact component={Home} />
-  </Switch>
-);
+export default Home;

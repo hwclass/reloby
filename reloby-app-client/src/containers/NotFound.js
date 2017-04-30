@@ -1,5 +1,4 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
 import './NotFound.css';
 
 const NotFound = () => (
@@ -8,8 +7,4 @@ const NotFound = () => (
   </div>
 );
 
-export default () => (
-  <Switch>
-    <Route component={NotFound} />
-  </Switch>
-);
+export default NotFound;

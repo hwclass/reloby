@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
 import {
   Button,
   FormGroup,
   FormControl,
   ControlLabel
 } from 'react-bootstrap';
+import {
+  CognitoUserPool,
+  AuthenticationDetails,
+  CognitoUser
+} from 'amazon-cognito-identity-js';
+
+import config from '../config.js';
 
 import './Login.css';
 
@@ -30,8 +36,44 @@ class Login extends Component {
     })
   }
 
-  handleSubmit = (event) => {
+  login(username, password) {
+    //get a user pool instance from Amazon Cognito
+    const userPool = new CognitoUserPool({
+      UserPoolId: config.cognito.USER_POOL_ID,
+      ClientId: config.cognito.APP_CLIENT_ID
+    });
+
+    //create authentication data
+    const authenticationData = {
+      Username: username,
+      Password: password
+    };
+
+    //create Amazon Cognito user credentials
+    const user = new CognitoUser({
+      Username: username,
+      Pool: userPool
+    });
+
+    const authenticationDetails = new AuthenticationDetails(authenticationData);
+
+    return new Promise((resolve, reject) => {
+      user.authenticateUser(authenticationDetails, {
+        onSuccess: (result) => resolve(result.getIdToken().getJwtToken()),
+        onFailure: (err) => reject(err)
+      })
+    });
+  }
+
+  handleSubmit = async (event) => {
     event.preventDefault();
+
+    try {
+      const userToken = await this.login(this.state.username,this.state.password);
+      this.props.updateUserToken(userToken);
+    } catch(err) {
+      alert(err);
+    }
   }
 
   render() {
@@ -66,8 +108,4 @@ class Login extends Component {
   }
 };
 
-export default () => (
-  <Switch>
-    <Route path="/login" exact component={Login} />
-  </Switch>
-);
+export default Login;
