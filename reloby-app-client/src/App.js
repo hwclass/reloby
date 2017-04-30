@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { Nav, Navbar, NavItem } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 import Home from './containers/Home';
+import RouteNavItem from './components/RouteNavItem';
 import './App.css';
 
 class App extends Component {
-  handleNavItemOnClick(event) {
+
+  handleNavItemOnClick = (event) => {
     event.preventDefault();
     this.props.history.push(event.currentTarget.getAttribute('href'));
   }
+
   render() {
     return (
       <div className="App container">
@@ -21,8 +24,8 @@ class App extends Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav pullRight>
-              <NavItem href="/signup" onClick={this.handleNavItemOnClick}>Signup</NavItem>
-              <NavItem href="/login" onClick={this.handleNavItemOnClick}>Login</NavItem>
+              <RouteNavItem href="/signup" onClick={this.handleNavItemOnClick}>Signup</RouteNavItem>
+              <RouteNavItem href="/login" onClick={this.handleNavItemOnClick}>Login</RouteNavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -30,6 +33,7 @@ class App extends Component {
       </div>
     );
   }
+
 }
 
 export default withRouter(App);
