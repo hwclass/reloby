@@ -4,6 +4,5 @@ AWS.config.update({region:'us-west-2'});
 
 export function call(action, params) {
   const dynamoDb = new AWS.DynamoDB.DocumentClient();
-  console.dir(params);
   return dynamoDb[action](params).promise();
 }

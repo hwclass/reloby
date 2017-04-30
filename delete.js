@@ -14,17 +14,11 @@ export async function main(event, context, callback) {
   };
 
   try {
-    const result = await dynamoDbLib.call('get', params);
-    if (result.Item) {
-      // Return the retrieved item
-      callback(null, success(result.Item));
-    }
-    else {
-      callback(null, failure({status: false, error: 'Item not found.'}));
-    }
+    const result = await dynamoDbLib.call('delete', params);
+    // Delete the item
+    callback(null, success({status: true}));
   }
   catch(e) {
-    console.log(e);
     callback(null, failure({status: false}));
   }
 };

@@ -121,14 +121,29 @@ functions:
           cors: true
           authorizer:
             arn: arn:aws:cognito-idp:us-west-2:240930616989:userpool/us-west-2_pCCfU2VL5
-# you can add CloudFormation resource templates here
-#resources:
-#  Resources:
-#    NewResource:
-#      Type: AWS::S3::Bucket
-#      Properties:
-#        BucketName: my-new-bucket
-#  Outputs:
-#     NewOutput:
-#       Description: "Description for the output"
-#       Value: "Some output value"
+
+  update:
+    # Defines an HTTP API endpoint that calls the main function in update.js
+    # - path: url path is /notes/{id}
+    # - method: PUT request
+    handler: update.main
+    events:
+      - http:
+          path: cities/{id}
+          method: put
+          cors: true
+          authorizer:
+            arn: arn:aws:cognito-idp:us-west-2:240930616989:userpool/us-west-2_pCCfU2VL5
+
+  delete:
+    # Defines an HTTP API endpoint that calls the main function in update.js
+    # - path: url path is /notes/{id}
+    # - method: PUT request
+    handler: delete.main
+    events:
+      - http:
+          path: cities/{id}
+          method: delete
+          cors: true
+          authorizer:
+            arn: arn:aws:cognito-idp:us-west-2:240930616989:userpool/us-west-2_pCCfU2VL5
