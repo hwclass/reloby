@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Nav, Navbar } from 'react-bootstrap';
 import Home from './containers/Home';
+import NotFound from './containers/NotFound';
+import Login from './containers/Login';
 import RouteNavItem from './components/RouteNavItem';
 import './App.css';
 
@@ -30,6 +32,8 @@ class App extends Component {
           </Navbar.Collapse>
         </Navbar>
         <Home/>
+        <Login/>
+        <NotFound/>
       </div>
     );
   }
