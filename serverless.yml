@@ -120,7 +120,7 @@ functions:
           method: get
           cors: true
           authorizer:
-            arn: arn:aws:cognito-idp:us-west-2:240930616989:userpool/us-west-2_pCCfU2VL5
+            arn: arn:aws:cognito-idp:us-west-2:240930616989:userpool/us-west-2_WHakSYYqu
 
   update:
     # Defines an HTTP API endpoint that calls the main function in update.js
@@ -133,7 +133,7 @@ functions:
           method: put
           cors: true
           authorizer:
-            arn: arn:aws:cognito-idp:us-west-2:240930616989:userpool/us-west-2_pCCfU2VL5
+            arn: arn:aws:cognito-idp:us-west-2:240930616989:userpool/us-west-2_WHakSYYqu
 
   delete:
     # Defines an HTTP API endpoint that calls the main function in update.js
@@ -146,4 +146,4 @@ functions:
           method: delete
           cors: true
           authorizer:
-            arn: arn:aws:cognito-idp:us-west-2:240930616989:userpool/us-west-2_pCCfU2VL5
+            arn: arn:aws:cognito-idp:us-west-2:240930616989:userpool/us-west-2_WHakSYYqu

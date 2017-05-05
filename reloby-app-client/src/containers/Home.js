@@ -20,6 +20,7 @@ class Home extends Component {
   }
 
   async componentDidMount() {
+    debugger;
     if (this.props.userToken === null) {
       return;
     }
