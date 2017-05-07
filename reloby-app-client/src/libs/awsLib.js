@@ -11,6 +11,8 @@ export async function invokeApig({ path, method = 'GET', body }, userToken) {
 
   body = (body) ? JSON.stringify(body) : body;
 
+  debugger;
+  
   const results = await fetch(url, {
     method,
     body,
@@ -33,7 +35,9 @@ export async function getAwsCredentials(userToken) {
       IdentityPoolId: config.cognito.IDENTITY_POOL_ID,
       Logins: {
         [authenticator]: userToken
-      }
+      }/*,
+      RoleArn: 'arn:aws:cognito-identity:us-west-2:240930616989:identitypool/us-west-2:f9f4de60-09d9-4335-babe-891858f38597'
+      */
     });
 
     return AWS.config.credentials.getPromise();

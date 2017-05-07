@@ -19,8 +19,7 @@ class Home extends Component {
     }
   }
 
-  async componentDidMount() {
-    debugger;
+  async componentDidMount() {    
     if (this.props.userToken === null) {
       return;
     }
@@ -40,13 +39,6 @@ class Home extends Component {
 
   cities() {
     return invokeApig({ path: '/cities' }, this.props.userToken);
-  }
-
-  renderLander() {
-    <div className="lander">
-      <h1>Reloby</h1>
-      <p>Choose your city to relocate</p>
-    </div>
   }
 
   renderCitiesList(cities) {
@@ -72,12 +64,20 @@ class Home extends Component {
     });
   }
 
+  renderLander() {
+    <div className="lander">
+      <h1>Reloby</h1>
+      <p>Choose your city to relocate</p>
+    </div>
+  }
+
   renderCities() {
     return (
       <div>
         <PageHeader>Cities</PageHeader>
         <ListGroup>
-          {this.renderCitiesList(this.state.cities)}
+        { ! this.state.isLoading
+            && this.renderCitiesList(this.state.cities) }
         </ListGroup>
       </div>
     );
