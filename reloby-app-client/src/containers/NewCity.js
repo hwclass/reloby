@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
-import { invokeApig } from '../libs/awsLib';
+import { invokeApig, s3Upload } from '../libs/awsLib';
 
 import {
   PageHeader,
@@ -45,7 +45,7 @@ class NewCity extends Component {
   handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (this.file && this.file.size > config.S3.MAX_ATTACHMENT_SIZE) {
+    if (this.file && this.file.size > config.s3.MAX_ATTACHMENT_SIZE) {
       alert('Please pick a file smaller than 5MB');
       return;
     }
@@ -53,8 +53,13 @@ class NewCity extends Component {
     this.setState({ isLoading: true });
 
     try {
+      const uploadedFilename = (this.file)
+        ? (await s3Upload(this.file, this.props.userToken)).Location
+        : null;
+
       await this.createCity({
-        content: this.state.content
+        content: this.state.content,
+        attachment: uploadedFilename
       });
       this.props.history.push('/');
     } catch(err) {

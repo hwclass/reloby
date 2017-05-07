@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import AWS from 'aws-sdk';
 import {
   Nav,
   Navbar,
@@ -72,6 +73,10 @@ class App extends Component {
 
     if (currentUser !== null) {
       currentUser.signOut();
+    }
+
+    if (AWS.config.credentials) {
+      AWS.config.credentials.clearCachedId();
     }
 
     this.updateUserToken(null);
